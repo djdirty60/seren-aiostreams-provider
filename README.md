@@ -1,25 +1,3 @@
-Claude
-MacBook Air van Wilfried, Verbonden
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Readme · MD
 AIOStreams Scraper for Seren
 A provider package for the Kodi add-on Seren that gets its sources from your own AIOStreams setup.
 
