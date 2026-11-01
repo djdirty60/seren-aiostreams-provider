@@ -1,0 +1,38 @@
+{
+  "name": "aiostreams",
+  "author": "custom",
+  "version": "1.0.2",
+  "remote_meta": "https://raw.githubusercontent.com/djdirty60/seren-aiostreams-provider/main/meta.json",
+  "services": [],
+  "settings": [
+    {
+      "id": "manifest_url",
+      "type": "str",
+      "label": "AIOStreams manifest URL",
+      "visible": true,
+      "default": ""
+    },
+    {
+      "id": "include_uncached",
+      "type": "bool",
+      "label": "Show uncached streams",
+      "visible": true,
+      "default": "False"
+    },
+    {
+      "id": "keep_order",
+      "type": "bool",
+      "label": "Keep AIOStreams order (numbering)",
+      "visible": true,
+      "default": "True"
+    },
+    {
+      "id": "timeout",
+      "type": "int",
+      "label": "Timeout (seconds)",
+      "visible": true,
+      "default": "30"
+    }
+  ],
+  "update_directory": "https://raw.githubusercontent.com/djdirty60/seren-aiostreams-provider/main/packages/"
+}
