@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.1.1 – 2026-11-03
+- **New list item properties for Seren themes:** `aio_imax`, `aio_fel`, `aio_lang` and `aio_nlsubs`, with the text to show as value (`IMAX`, `FEL`/`P7`, `NL`/`MULTI`, `NL-SUBS`). Only set when they apply.
+- **Tags in the title are now off by default** on new installs, so titles stay short. Turn *Show IMAX / FEL / language tags in title* on if your theme doesn't show the properties. Existing installs keep their current setting.
+
 ## v1.1.0 – 2026-11-03
 
 ### ✨ New

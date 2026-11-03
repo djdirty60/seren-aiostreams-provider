@@ -13,7 +13,7 @@ AIOStreams does the heavy lifting. It searches all your add-ons (Comet, StremThr
 - **Full stream details:** resolution, Dolby Vision, HDR, HYBRID, REMUX, BluRay, WEB, Atmos, TrueHD, DTS:X, DTS-HD MA, DD+, 7.1/5.1 and codec (HEVC/AVC/AV1) come straight from AIOStreams. Seren can filter and sort on them too.
 - **File size included:** Seren's size filter works as normal.
 - **Only playable streams:** uncached streams are hidden by default. You can turn them on in the settings.
-- **Extra tags in the title:** `IMAX`, `FEL` (or `P7`), `NL` and `NL-SUBS`, things Seren can't show on its own. For example: `01. [IMAX FEL NL] Movie.2026.2160p.BluRay.REMUX…`
+- **Extra tags:** `IMAX`, `FEL` (or `P7`), `NL`/`MULTI` and `NL-SUBS`, things Seren can't show on its own. They're passed to the skin as list item properties (see *For theme makers* below), and can optionally be put in front of the title: `01. [IMAX FEL NL] Movie.2026.2160p.BluRay.REMUX…`
 - **Language info for Seren:** dual/multi audio, multiple subtitles and cached status are passed to Seren as `DUAL-AUDIO`, `MULTI-AUDIO`, `MULTI-SUB` and `CACHED`.
 - **Remembers results for a short while:** open the same movie again and the sources appear instantly (10 minutes by default).
 - **Test connection button:** checks your manifest URL and runs a test search, right from the package settings.
@@ -97,7 +97,7 @@ You'll find these under **Tools → Provider Tools → Manage Provider Packages 
 | Test connection | button | Checks the URL and runs a test search. Shows the result in a pop-up. |
 | Show uncached streams | Off | Turn on to also show streams that still need to download. |
 | Keep AIOStreams order (numbering) | On | Puts numbers in front of titles so Seren follows the AIOStreams order. |
-| Show IMAX / FEL / language tags in title | On | Adds tags like `[IMAX FEL NL]` in front of the title. |
+| Show IMAX / FEL / language tags in title | Off | Adds tags like `[IMAX FEL NL]` in front of the title. Turn on if your Seren theme doesn't show the `aio_*` properties. |
 | Remember results (minutes, 0 = off) | 10 | Opening the same title again within this time skips the wait. |
 | Clear remembered results | button | Empties the result cache, e.g. after changing your AIOStreams setup. |
 | Timeout (seconds) | 30 | How long the scraper waits for AIOStreams at most. |
@@ -127,6 +127,23 @@ To use it: open AIOStreams → **About → Get Started → Load Template → Imp
 ## Updating
 
 Go to **Seren → Tools → Provider Tools → Check for updates** (works from version 1.0.2). Or install the new zip by hand through *Install Package*; your manifest URL is kept.
+
+---
+
+## For theme makers
+
+Every source from this scraper carries these list item properties. A property is only set when it applies; the value is the text to show.
+
+| Property | Value |
+|---|---|
+| `ListItem.Property(aio_imax)` | `IMAX` |
+| `ListItem.Property(aio_fel)` | `FEL` or `P7` |
+| `ListItem.Property(aio_lang)` | `NL` or `MULTI` |
+| `ListItem.Property(aio_nlsubs)` | `NL-SUBS` |
+
+Example: `<visible>!String.IsEmpty(ListItem.Property(aio_fel))</visible>` with `<label>$INFO[ListItem.Property(aio_fel)]</label>`.
+
+The [Lucent Seren theme](https://github.com/djdirty60/Seren-Thema) shows them as labels on the provider line.
 
 ---
 

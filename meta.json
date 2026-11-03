@@ -1,7 +1,7 @@
 {
   "name": "aiostreams",
   "author": "custom",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "remote_meta": "https://raw.githubusercontent.com/djdirty60/seren-aiostreams-provider/main/meta.json",
   "services": [],
   "settings": [
@@ -43,7 +43,7 @@
       "type": "bool",
       "label": "Show IMAX / FEL / language tags in title",
       "visible": true,
-      "default": "True"
+      "default": "False"
     },
     {
       "id": "cache_minutes",
