@@ -1,0 +1,489 @@
+{
+  "metadata": {
+    "id": "custom.ultra-dv-fel-remux",
+    "name": "Ultra 4K DV FEL Remux",
+    "description": "Puts the best on top: 4K BluRay REMUX with Dolby Vision P7 (FEL), IMAX, Atmos/TrueHD and DTS:X. Debrid and Easynews, failover, next-episode precache and Dutch audio/subs preferred. Fake remuxes, upscales, 3D and cam rips removed.",
+    "author": "djdirty60",
+    "source": "custom",
+    "version": "1.3.0",
+    "category": "Debrid",
+    "tags": [
+      "4K",
+      "Dolby Vision",
+      "Remux"
+    ],
+    "serviceRequired": true,
+    "services": [
+      "realdebrid",
+      "torbox",
+      "premiumize",
+      "alldebrid",
+      "debridlink",
+      "easydebrid",
+      "debrider",
+      "offcloud",
+      "pikpak",
+      "easynews"
+    ],
+    "setToSaveInstallMenu": true,
+    "changelog": [
+      {
+        "date": "2026-11-03",
+        "version": "1.3.0",
+        "content": "Top remux groups, next-episode precache, failover, 150 Mbps bitrate cap, Dutch preferred, fake remuxes and regrades removed"
+      },
+      {
+        "date": "2026-10-27",
+        "version": "1.2.0",
+        "content": "Resolution sorts first: 4K always above 1080p"
+      },
+      {
+        "date": "2026-10-25",
+        "version": "1.1.0",
+        "content": "Easynews Search added"
+      },
+      {
+        "date": "2026-10-25",
+        "version": "1.0.0",
+        "content": "First version"
+      }
+    ]
+  },
+  "config": {
+    "presets": [
+      {
+        "type": "easynews-search",
+        "instanceId": "en1",
+        "enabled": true,
+        "options": {
+          "name": "Easynews",
+          "timeout": 7000,
+          "paginate": false,
+          "useMultipleInstances": false,
+          "services": [
+            "easynews"
+          ]
+        }
+      },
+      {
+        "type": "torrentio",
+        "instanceId": "80c",
+        "enabled": true,
+        "options": {
+          "name": "Torrentio",
+          "timeout": 5000,
+          "resources": [
+            "stream"
+          ],
+          "providers": [],
+          "useMultipleInstances": false
+        }
+      },
+      {
+        "type": "comet",
+        "instanceId": "c9f",
+        "enabled": true,
+        "options": {
+          "name": "Comet",
+          "timeout": 7000,
+          "resources": [
+            "stream"
+          ],
+          "includeP2P": false,
+          "removeTrash": true,
+          "mediaTypes": []
+        }
+      },
+      {
+        "type": "stremthruTorz",
+        "instanceId": "29d",
+        "enabled": true,
+        "options": {
+          "name": "StremThru Torz",
+          "timeout": 7000,
+          "resources": [
+            "stream"
+          ],
+          "mediaTypes": [],
+          "includeP2P": false,
+          "useMultipleInstances": false
+        }
+      },
+      {
+        "type": "knaben",
+        "instanceId": "534",
+        "enabled": true,
+        "options": {
+          "name": "Knaben",
+          "timeout": 7000,
+          "mediaTypes": [],
+          "useMultipleInstances": false
+        }
+      },
+      {
+        "type": "mediafusion",
+        "instanceId": "224",
+        "enabled": true,
+        "options": {
+          "name": "MediaFusion",
+          "timeout": 7000,
+          "resources": [
+            "stream",
+            "catalog",
+            "meta"
+          ],
+          "useCachedResultsOnly": true,
+          "enableWatchlistCatalogs": false,
+          "downloadViaBrowser": false,
+          "contributorStreams": false,
+          "certificationLevelsFilter": [],
+          "nudityFilter": [],
+          "mediaTypes": []
+        }
+      }
+    ],
+    "formatter": {
+      "id": "prism",
+      "definition": {
+        "name": "",
+        "description": ""
+      }
+    },
+    "preferredQualities": [
+      "BluRay REMUX",
+      "BluRay",
+      "WEB-DL",
+      "WEBRip",
+      "HDRip",
+      "HC HD-Rip",
+      "DVD REMUX",
+      "DVDRip",
+      "HDTV",
+      "Unknown",
+      "CAM",
+      "TS",
+      "TC",
+      "SCR"
+    ],
+    "preferredResolutions": [
+      "2160p",
+      "1440p",
+      "1080p",
+      "720p",
+      "576p",
+      "480p",
+      "360p",
+      "240p",
+      "144p",
+      "Unknown"
+    ],
+    "excludedQualities": [
+      "CAM",
+      "SCR",
+      "TS",
+      "TC"
+    ],
+    "excludedVisualTags": [
+      "3D",
+      "H-OU",
+      "H-SBS",
+      "AI",
+      "Upscaled"
+    ],
+    "sortCriteria": {
+      "global": [
+        {
+          "key": "resolution",
+          "direction": "desc"
+        },
+        {
+          "key": "cached",
+          "direction": "desc"
+        },
+        {
+          "key": "library",
+          "direction": "desc"
+        },
+        {
+          "key": "streamExpressionScore",
+          "direction": "desc"
+        },
+        {
+          "key": "quality",
+          "direction": "desc"
+        },
+        {
+          "key": "visualTag",
+          "direction": "desc"
+        },
+        {
+          "key": "audioTag",
+          "direction": "desc"
+        },
+        {
+          "key": "audioChannel",
+          "direction": "desc"
+        },
+        {
+          "key": "language",
+          "direction": "desc"
+        },
+        {
+          "key": "subtitle",
+          "direction": "desc"
+        },
+        {
+          "key": "encode",
+          "direction": "desc"
+        },
+        {
+          "key": "size",
+          "direction": "desc"
+        },
+        {
+          "key": "seeders",
+          "direction": "desc"
+        }
+      ]
+    },
+    "deduplicator": {
+      "enabled": true,
+      "multiGroupBehaviour": "aggressive",
+      "keys": [
+        "filename",
+        "infoHash"
+      ],
+      "cached": "single_result",
+      "uncached": "per_service",
+      "p2p": "single_result"
+    },
+    "excludedResolutions": [],
+    "includedResolutions": [],
+    "requiredResolutions": [],
+    "includedQualities": [],
+    "requiredQualities": [],
+    "excludedLanguages": [],
+    "includedLanguages": [],
+    "requiredLanguages": [],
+    "preferredLanguages": [
+      "Dutch"
+    ],
+    "includedVisualTags": [],
+    "requiredVisualTags": [],
+    "preferredVisualTags": [
+      "HDR+DV",
+      "DV",
+      "DV Only",
+      "HDR10+",
+      "HDR10",
+      "HDR",
+      "HLG",
+      "10bit",
+      "SDR",
+      "Unknown"
+    ],
+    "excludedAudioTags": [],
+    "includedAudioTags": [],
+    "requiredAudioTags": [],
+    "preferredAudioTags": [
+      "Atmos",
+      "DTS:X",
+      "TrueHD",
+      "DTS-HD MA",
+      "PCM",
+      "FLAC",
+      "DTS-HD",
+      "DD+",
+      "DTS-ES",
+      "DTS",
+      "DD",
+      "OPUS",
+      "AAC",
+      "Unknown"
+    ],
+    "excludedStreamTypes": [],
+    "includedStreamTypes": [],
+    "requiredStreamTypes": [],
+    "preferredStreamTypes": [],
+    "excludedEncodes": [],
+    "includedEncodes": [],
+    "requiredEncodes": [],
+    "preferredEncodes": [
+      "HEVC",
+      "AV1",
+      "AVC",
+      "VC-1"
+    ],
+    "seederRangeTypes": [],
+    "digitalReleaseFilter": {
+      "enabled": true,
+      "tolerance": 0,
+      "requestTypes": [],
+      "addons": []
+    },
+    "excludeCachedFromAddons": [],
+    "excludeCachedFromServices": [],
+    "excludeCachedFromStreamTypes": [],
+    "excludeUncachedFromAddons": [],
+    "excludeUncachedFromServices": [],
+    "excludeUncachedFromStreamTypes": [],
+    "proxy": {
+      "proxiedAddons": [],
+      "proxiedServices": [],
+      "id": "builtin"
+    },
+    "hideErrorsForResources": [],
+    "statistics": {
+      "statsToShow": [
+        "addon",
+        "filter"
+      ]
+    },
+    "tmdbApiKey": "<template_placeholder>",
+    "yearMatching": {
+      "enabled": true,
+      "requestTypes": [],
+      "addons": []
+    },
+    "titleMatching": {
+      "similarityThreshold": 1,
+      "enabled": true,
+      "requestTypes": [
+        "movie",
+        "series"
+      ],
+      "addons": []
+    },
+    "seasonEpisodeMatching": {
+      "enabled": true,
+      "requestTypes": [
+        "movie",
+        "series"
+      ],
+      "addons": []
+    },
+    "autoPlay": {
+      "attributes": [
+        "service",
+        "proxied",
+        "resolution",
+        "quality",
+        "encode",
+        "audioTags",
+        "visualTags",
+        "languages",
+        "releaseGroup"
+      ]
+    },
+    "catalogModifications": [],
+    "cacheAndPlay": {
+      "enabled": true,
+      "streamTypes": [
+        "usenet"
+      ]
+    },
+    "excludedStreamExpressions": [
+      {
+        "expression": "/*Fake 4K REMUX movie (<20 GB)*/ queryType == 'movie' ? size(resolution(quality(streams, 'BluRay REMUX'), '2160p'), 1, '20GB') : []",
+        "enabled": true
+      },
+      {
+        "expression": "/*Fake 1080p REMUX movie (<10 GB)*/ queryType == 'movie' ? size(resolution(quality(streams, 'BluRay REMUX'), '1080p'), 1, '10GB') : []",
+        "enabled": true
+      },
+      {
+        "expression": "/*Regrades and upscales*/ keyword(streams, 'filename,folderName', 'Regrade', 'Regraded', 'Upscale', 'Upscaled', 'UpRez', 'AI Upscale')",
+        "enabled": true
+      }
+    ],
+    "preferredAudioChannels": [
+      "7.1",
+      "6.1",
+      "5.1",
+      "2.0",
+      "Unknown"
+    ],
+    "rankedStreamExpressions": [
+      {
+        "expression": "/*Dolby Vision FEL (P7)*/ keyword(streams, 'filename,folderName', 'FEL', 'P7')",
+        "score": 400,
+        "enabled": true
+      },
+      {
+        "expression": "/*4K REMUX with Dolby Vision*/ resolution(quality(visualTag(streams, 'DV', 'HDR+DV', 'DV Only'), 'BluRay REMUX'), '2160p')",
+        "score": 300,
+        "enabled": true
+      },
+      {
+        "expression": "/*Top group 4K REMUX (often FEL)*/ resolution(quality(keyword(streams, 'releaseGroup,filename', 'FraMeSToR', 'BLURANiUM', 'CiNEPHiLES', 'WiLDCAT', 'PiRAMiDHEAD', '3L', 'BMF', 'ZQ', 'ATELiER', 'BiZKiT', 'PmP'), 'BluRay REMUX'), '2160p')",
+        "score": 150,
+        "enabled": true
+      },
+      {
+        "expression": "/*4K REMUX*/ resolution(quality(streams, 'BluRay REMUX'), '2160p')",
+        "score": 200,
+        "enabled": true
+      },
+      {
+        "expression": "/*IMAX*/ visualTag(streams, 'IMAX')",
+        "score": 80,
+        "enabled": true
+      },
+      {
+        "expression": "/*Atmos or DTS:X*/ audioTag(streams, 'Atmos', 'DTS:X')",
+        "score": 70,
+        "enabled": true
+      },
+      {
+        "expression": "/*Lossless audio (TrueHD / DTS-HD MA)*/ audioTag(streams, 'TrueHD', 'DTS-HD MA', 'PCM', 'FLAC')",
+        "score": 50,
+        "enabled": true
+      },
+      {
+        "expression": "/*Dolby Vision*/ visualTag(streams, 'DV', 'HDR+DV', 'DV Only')",
+        "score": 50,
+        "enabled": true
+      },
+      {
+        "expression": "/*HDR10+*/ visualTag(streams, 'HDR10+')",
+        "score": 15,
+        "enabled": true
+      },
+      {
+        "expression": "/*7.1 channels*/ audioChannels(streams, '7.1')",
+        "score": 15,
+        "enabled": true
+      }
+    ],
+    "resultLimits": {
+      "global": 20,
+      "resolution": 10
+    },
+    "precacheNextEpisode": true,
+    "failover": {
+      "enabled": true,
+      "contentTypes": [
+        "debrid",
+        "usenet"
+      ],
+      "allowCrossType": true,
+      "maxAttempts": 3
+    },
+    "bitrate": {
+      "useMetadataRuntime": true,
+      "global": {
+        "movies": [
+          0,
+          150000000
+        ],
+        "series": [
+          0,
+          150000000
+        ]
+      }
+    },
+    "preferredSubtitles": [
+      "Dutch"
+    ]
+  }
+}

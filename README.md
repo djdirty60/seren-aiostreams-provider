@@ -13,9 +13,15 @@ AIOStreams does the heavy lifting. It searches all your add-ons (Comet, StremThr
 - **Full stream details:** resolution, Dolby Vision, HDR, HYBRID, REMUX, BluRay, WEB, Atmos, TrueHD, DTS:X, DTS-HD MA, DD+, 7.1/5.1 and codec (HEVC/AVC/AV1) come straight from AIOStreams. Seren can filter and sort on them too.
 - **File size included:** Seren's size filter works as normal.
 - **Only playable streams:** uncached streams are hidden by default. You can turn them on in the settings.
+- **Extra tags in the title:** `IMAX`, `FEL` (or `P7`), `NL` and `NL-SUBS`, things Seren can't show on its own. For example: `01. [IMAX FEL NL] Movie.2026.2160p.BluRay.REMUX…`
+- **Language info for Seren:** dual/multi audio, multiple subtitles and cached status are passed to Seren as `DUAL-AUDIO`, `MULTI-AUDIO`, `MULTI-SUB` and `CACHED`.
+- **Remembers results for a short while:** open the same movie again and the sources appear instantly (10 minutes by default).
+- **Test connection button:** checks your manifest URL and runs a test search, right from the package settings.
+- **Automatic updates:** Seren finds new versions through *Provider Tools → Check for updates*.
 - **Clear source labels:** for example `AIO|TORBOX` or `AIO|EASYNEWS`.
 - **Movies and TV shows:** uses IMDb IDs, with TMDB IDs as a fallback.
 - **Fails safely:** if AIOStreams can't be reached, Seren carries on with your other providers.
+- **No secrets in the log:** your manifest URL is never written to `kodi.log`, and it's masked in the settings screen.
 
 ## How it works
 
@@ -64,6 +70,7 @@ Put the zip on the device that runs Kodi, for example:
 ### Step 5: Enter the URL in Seren
 1. Go to **Tools → Provider Tools → Manage Provider Packages → aiostreams**.
 2. Select **AIOStreams manifest URL** and paste your URL.
+3. Select **Test connection**. You should see *"Connected to AIOStreams"* and the number of streams found in a test search.
 
 > 💡 **Tip:** typing a long URL with a remote is a pain. With the **Kore** or **Yatse** app on your phone you can paste text straight into Kodi.
 
@@ -86,19 +93,40 @@ You'll find these under **Tools → Provider Tools → Manage Provider Packages 
 
 | Setting | Default | Description |
 |---|---|---|
-| AIOStreams manifest URL | *(empty)* | Your personal manifest URL. Required. |
+| AIOStreams manifest URL | *(empty)* | Your personal manifest URL. Required. Shown as `*******`. |
+| Test connection | button | Checks the URL and runs a test search. Shows the result in a pop-up. |
 | Show uncached streams | Off | Turn on to also show streams that still need to download. |
 | Keep AIOStreams order (numbering) | On | Puts numbers in front of titles so Seren follows the AIOStreams order. |
+| Show IMAX / FEL / language tags in title | On | Adds tags like `[IMAX FEL NL]` in front of the title. |
+| Remember results (minutes, 0 = off) | 10 | Opening the same title again within this time skips the wait. |
+| Clear remembered results | button | Empties the result cache, e.g. after changing your AIOStreams setup. |
 | Timeout (seconds) | 30 | How long the scraper waits for AIOStreams at most. |
+
+> Updating from an older version? Settings you already had keep their old name and value; the new ones are added.
 
 ---
 
-## Tip: pair it with a good AIOStreams setup
+## AIOStreams template included
 
-This scraper shows exactly what AIOStreams returns. To get the best streams on top (4K REMUX, Dolby Vision P7/FEL, IMAX, Atmos, TrueHD, DTS:X), set that up in your AIOStreams sorting:
+This scraper shows exactly what AIOStreams returns, so your AIOStreams sorting decides what ends up on top. This repo includes a ready-made template: [`template/ultra-dv-fel-remux.json`](template/ultra-dv-fel-remux.json).
 
-- Under *Sorting*, put **Resolution** at the top so 4K always comes before 1080p.
-- Use *Ranked Stream Expressions* to give REMUX, Dolby Vision, Atmos and IMAX extra points.
+What it does:
+- **4K always above 1080p**, cached streams first.
+- **Scores** for Dolby Vision FEL/P7, 4K REMUX, top remux release groups (FraMeSToR, BLURANiUM, …), IMAX, Atmos/DTS:X, TrueHD/DTS-HD MA and 7.1.
+- **Dutch audio and subtitles** preferred, but only between streams of equal quality.
+- **Removes** fake remuxes (a 4K REMUX movie under 20 GB, a 1080p REMUX movie under 10 GB), regrades, upscales, 3D and cam rips.
+- **Failover:** if a stream fails, AIOStreams tries the next one.
+- **Precache:** the next episode of a show is cached in the background.
+- **Bitrate cap of 150 Mbps** against broken files. Lower it if your device stutters.
+- Debrid and **Easynews** sources.
+
+To use it: open AIOStreams → **About → Get Started → Load Template → Import**, choose the file, pick your debrid service and/or Easynews and enter your keys.
+
+---
+
+## Updating
+
+Go to **Seren → Tools → Provider Tools → Check for updates** (works from version 1.0.2). Or install the new zip by hand through *Install Package*; your manifest URL is kept.
 
 ---
 
@@ -106,6 +134,9 @@ This scraper shows exactly what AIOStreams returns. To get the best streams on t
 
 | Problem | Fix |
 |---|---|
+| Not sure if your URL works | Use **Test connection** in the package settings. |
+| Changed your AIOStreams setup but old results show | Use **Clear remembered results**, or set *Remember results* to `0`. |
+| Install via *Web Location* does nothing | Seren gives no error when the download fails. Download the zip on your phone or PC and use **Browse...** instead. |
 | No AIOStreams sources in the list | Check that the manifest URL is correct and the provider is **enabled** under Manage Provider Packages. |
 | Large remuxes are missing | Raise the **File Size limit** in Seren (Step 6). |
 | Order looks wrong | Set **Sort Level 1** to `None` and check your sorting in AIOStreams. |
@@ -118,13 +149,18 @@ This scraper shows exactly what AIOStreams returns. To get the best streams on t
 ## Limitations
 
 - Plain **P2P torrents** without debrid are skipped. Only streams that play directly are passed through.
-- There's no automatic update check. To update, install the new version through *Install Package*.
+- Seren can't filter or sort on language itself; the `NL` tags are for display. Use the AIOStreams template to put Dutch first.
+- Versions before 1.0.2 can't update themselves. Install 1.0.2 or newer once by hand; after that, *Check for updates* works.
 
 ---
 
 ## File structure
 
 ```
+template/ultra-dv-fel-remux.json      # AIOStreams template (import in AIOStreams)
+packages/aiostreams-<version>.zip     # update files Seren downloads
+meta.json                             # tells Seren the latest version
+
 seren-aiostreams-provider.zip
 ├── meta.json                          # package name, version and settings
 ├── providers/aiostreams/
@@ -132,7 +168,7 @@ seren-aiostreams-provider.zip
 │       ├── __init__.py                # registers the provider as 'direct'
 │       └── direct/aiostreams.py       # Seren hook (movie / episode)
 └── providerModules/aiostreams/
-    └── core.py                        # fetches from AIOStreams and converts to Seren sources
+    └── core.py                        # fetching, converting, cache, test button
 ```
 
 ---

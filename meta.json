@@ -1,7 +1,7 @@
 {
   "name": "aiostreams",
   "author": "custom",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "remote_meta": "https://raw.githubusercontent.com/djdirty60/seren-aiostreams-provider/main/meta.json",
   "services": [],
   "settings": [
@@ -10,7 +10,19 @@
       "type": "str",
       "label": "AIOStreams manifest URL",
       "visible": true,
-      "default": ""
+      "default": "",
+      "sensitive": true
+    },
+    {
+      "id": "test_connection",
+      "type": "str",
+      "label": "Test connection",
+      "visible": true,
+      "default": "Press to test",
+      "action": {
+        "module": "providerModules.aiostreams.core",
+        "function": "test_connection"
+      }
     },
     {
       "id": "include_uncached",
@@ -25,6 +37,31 @@
       "label": "Keep AIOStreams order (numbering)",
       "visible": true,
       "default": "True"
+    },
+    {
+      "id": "show_tags",
+      "type": "bool",
+      "label": "Show IMAX / FEL / language tags in title",
+      "visible": true,
+      "default": "True"
+    },
+    {
+      "id": "cache_minutes",
+      "type": "int",
+      "label": "Remember results (minutes, 0 = off)",
+      "visible": true,
+      "default": "10"
+    },
+    {
+      "id": "clear_cache",
+      "type": "str",
+      "label": "Clear remembered results",
+      "visible": true,
+      "default": "Press to clear",
+      "action": {
+        "module": "providerModules.aiostreams.core",
+        "function": "clear_cache_action"
+      }
     },
     {
       "id": "timeout",
