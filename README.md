@@ -4,6 +4,12 @@ A provider package for the Kodi add-on **[Seren](https://github.com/nixgates/plu
 
 AIOStreams does the heavy lifting. It searches all your add-ons (Comet, StremThru, Easynews and more), filters out the junk and sorts the results. Seren shows the list and plays the stream.
 
+**Current version: 1.1.1** · [Changelog](CHANGELOG.md) · [Releases](../../releases)
+
+![Source list in Seren with AIOStreams results](assets/sources.png)
+
+*Illustration of the source list: 4K remuxes on top, with `IMAX`, `FEL`, `NL` and `NL-SUBS` labels and `CACHED` status. The exact look depends on your Seren theme.*
+
 ---
 
 ## Features
@@ -72,6 +78,8 @@ Put the zip on the device that runs Kodi, for example:
 2. Select **AIOStreams manifest URL** and paste your URL.
 3. Select **Test connection**. You should see *"Connected to AIOStreams"* and the number of streams found in a test search.
 
+   ![Test connection result](assets/test-connection.png)
+
 > 💡 **Tip:** typing a long URL with a remote is a pain. With the **Kore** or **Yatse** app on your phone you can paste text straight into Kodi.
 
 ### Step 6: Configure Seren (recommended)
@@ -90,6 +98,8 @@ Done! Search for a movie and the AIOStreams sources show up in the list.
 ## Package settings
 
 You'll find these under **Tools → Provider Tools → Manage Provider Packages → aiostreams**.
+
+![Package settings](assets/settings.png)
 
 | Setting | Default | Description |
 |---|---|---|
@@ -175,6 +185,7 @@ The [Lucent Seren theme](https://github.com/djdirty60/Seren-Thema) shows them as
 
 ```
 template/ultra-dv-fel-remux.json      # AIOStreams template (import in AIOStreams)
+assets/                               # images used in this README
 packages/aiostreams-<version>.zip     # update files Seren downloads
 meta.json                             # tells Seren the latest version
 
