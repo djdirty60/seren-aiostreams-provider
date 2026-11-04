@@ -8,7 +8,7 @@ AIOStreams does the heavy lifting. It searches all your add-ons (Comet, StremThr
 
 ![Source list in Seren with AIOStreams results](assets/sources.png)
 
-*Illustration of the source list: 4K remuxes on top, with `IMAX`, `FEL`, `NL` and `NL-SUBS` labels and `CACHED` status. The exact look depends on your Seren theme.*
+*Illustration of the source list with the [Lucent Seren theme](https://github.com/djdirty60/Seren-Thema) 1.5.2 or newer: 4K remuxes on top, with coloured `IMAX`, `FEL`/`P7`, `NL`/`MULTI` and `NL-SUBS` badges and `CACHED` status. Other themes may show the tags differently.*
 
 ---
 
